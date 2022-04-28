@@ -1,10 +1,3 @@
-#!/usr/bin/env python
-# coding:utf-8
-"""
-  Purpose:  Main server side file.
-  Created:  27/04/2017
-  Note:     Run this file before running 'main_client_side.py'.
-"""
 
 import pickle
 from socket_client_server import Server

@@ -24,7 +24,7 @@ def main():
     # sig = concatenate(sig_prime, Yi, auth(0), ..., auth(n-1))
     pair = 3
     sig = []
-    M = "test"
+    M = input()
     sig_prime = key_pairs[pair].sign(M)
     sig.append(sig_prime)
     sig.append(key_pairs[pair].get_key('public', concatenate=True))
