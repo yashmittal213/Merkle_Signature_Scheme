@@ -1,10 +1,3 @@
-#!/usr/bin/env python
-# coding:utf-8
-"""
-  Purpose:  Main client side file.
-  Created:  27/04/2017
-  Note:     Run 'main_server_side.py' before running this file.
-"""
 
 import pickle
 from socket_client_server import Client
@@ -29,14 +22,13 @@ def main():
 
     # Merkle signature generation using a chosen pair of keys (Xi, Yi) from the Lamport signature scheme
     # sig = concatenate(sig_prime, Yi, auth(0), ..., auth(n-1))
-    # see https://en.wikipedia.org/wiki/Merkle_signature_scheme
-    pair = 3  # (Xi, Yi) pair number
+    pair = 3
     sig = []
     M = "test"
     sig_prime = key_pairs[pair].sign(M)
-    sig.append(sig_prime)  # Add sig_prime to the signature 'sig'.
-    sig.append(key_pairs[pair].get_key('public', concatenate=True))  # Add Yi to the signature 'sig'.
-    sig.append(mk.get_authentification_path_hashes(pair))  # Add auth(0), ..., auth(n-1) to the signature 'sig'.
+    sig.append(sig_prime)
+    sig.append(key_pairs[pair].get_key('public', concatenate=True))
+    sig.append(mk.get_authentification_path_hashes(pair))
     # Send to receiver the public key 'pub' (tree root), the message 'M' and the Merkle signature 'sig'.
     client = Client()
 
