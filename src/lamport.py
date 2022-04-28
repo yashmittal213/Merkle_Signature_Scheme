@@ -1,9 +1,4 @@
-#!/usr/bin/env python
-# coding:utf-8
-"""
-  Purpose:  Lamport One-Time Signature Scheme (LOTSS) implementation.
-  Created:  20/04/2017
-"""
+
 
 from bitstring import BitArray
 import hashlib

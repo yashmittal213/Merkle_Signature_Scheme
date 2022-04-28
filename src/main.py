@@ -1,9 +1,3 @@
-#!/usr/bin/env python
-# coding:utf-8
-"""
-  Purpose:  Main file.
-  Created:  19/04/2017
-"""
 
 from lamport import LamportSignature
 from merkle_tree import MerkleTree

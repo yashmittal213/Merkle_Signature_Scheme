@@ -1,9 +1,3 @@
-#!/usr/bin/env python
-# coding:utf-8
-"""
-  Purpose:  Merkle tree implementation.
-  Created:  19/04/2017
-"""
 
 import hashlib
 from math import log2, floor

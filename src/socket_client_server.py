@@ -1,9 +1,3 @@
-#!/usr/bin/env python
-# coding:utf-8
-"""
-  Purpose:  Socket
-  Created:  27/04/2017
-"""
 
 import socket
 
