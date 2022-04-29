@@ -24,32 +24,19 @@ class LamportSignature:
     @staticmethod
     def generate_private_key():
         """Generate a private key.
-        
-        Returns:
-            (list): Private key, 2×256×256 bits = 16 KiB.
-
-        """
+        Returns: (list): Private key, 2×256×256 bits = 16 KiB."""
         return [(bytearray(urandom(32)), bytearray(urandom(32))) for i in range(256)]
 
     def generate_public_key(self):
         """Generate a public key.
-        
-        Returns:
-            (list): Public key, 2×256×256 bits = 16 KiB.
-        
-        """
+        Returns:(list): Public key, 2×256×256 bits = 16 KiB. """
         return [(self.hash(a), self.hash(b)) for (a, b) in self.private_key]
 
     @staticmethod
     def concatenate_key(key_list):
         """Concatenate key.
-        
-        Args:
-            key_list (list): Key to concatenate.
-        
-        Returns:
-            (bytearray): Concatenated key.
-        
+        Args:key_list (list): Key to concatenate.
+        Returns:(bytearray): Concatenated key.
         """
         ret = bytearray(0)
         if type(key_list[0]) is tuple:
@@ -63,13 +50,8 @@ class LamportSignature:
     @staticmethod
     def decatenate_key(key):
         """Decatenate key.
-        
-        Args:
-            key (bytearray): Key to decatenate.
-        
-        Returns:
-            (list): Decatenated key.
-            
+        Args: key (bytearray): Key to decatenate.
+        Returns: (list): Decatenated key.
         """
         if len(key) == 8192:  # signature key size 256×256 bits
             return [key[i:i + 32] for i in range(0, 8192, 32)]
@@ -83,14 +65,10 @@ class LamportSignature:
 
     def get_key(self, key_type, concatenate):
         """Getter for the public or private key.
-        
         Args:
             key_type (str): 'public' or 'private'.
             concatenate (boolean): Concatenate key or not.
-        
-        Returns:
-            (bytearray/list): Public key.
-        
+        Returns: (bytearray/list): Public key.
         """
         key = self.public_key if key_type == 'public' else self.private_key
         if not concatenate:
@@ -98,14 +76,9 @@ class LamportSignature:
         return self.concatenate_key(key)
 
     def sign(self, msg):
-        """Sign a message with the Lamport signature.
-        
-        Args:
-            msg (str): Message to sign.
-        
-        Returns:
-            (list): Signature of the message, sequence of 256 random numbers, 256×256 bits.
-        
+        """Sign a message with the Lamport signature
+        Args: msg (str): Message to sign.
+        Returns: (list): Signature of the message, sequence of 256 random numbers, 256×256 bits.
         """
         if self.used:
             raise ValueError("Private and public keys already used!")
@@ -122,15 +95,12 @@ class LamportSignature:
     @classmethod
     def verify(cls, msg, signature, public_key):
         """Verify signature of the message.
-        
         Args:
             msg (str): Message to check.
             signature (list): Signature of the message, sequence of 256 random numbers, 256×256 bits.
             public_key (list): Public key, 2×256×256 bits.
-        
         Returns:
             (boolean): True if signature of the message is right otherwise False.
-        
         """
         msg_hash = cls.hash(msg)
         signature_hash = [cls.hash(i) for i in signature]
@@ -142,13 +112,8 @@ class LamportSignature:
     @staticmethod
     def hash(data):
         """Calculate sha256 hash of 'data'.
-        
-        Args:
-            (str/bytearray): Data to hash.
-
-        Returns:
-            (bytearray): bytes of the hash.
-
+        Args: (str/bytearray): Data to hash.
+        Returns:(bytearray): bytes of the hash.
         """
         if type(data) is not bytearray:
             data = data.encode('utf-8')
