@@ -9,3 +9,7 @@ The Lamport One-Time Signature Scheme (LOTSS) is a signature scheme in which the
 ## Requirements
 - Python 3
 - [bitstring](https://pypi.python.org/pypi/bitstring/3.1.5)
+
+## How to Run
+- First run main_server_side.py file
+- After that run main_client_side.py file and provide a message in input
