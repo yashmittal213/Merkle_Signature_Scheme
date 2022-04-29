@@ -19,7 +19,6 @@ def main():
     print("Check one time signature of the received message: " + M_receiver)
     result = LamportSignature.verify(M_receiver, sig_receiver[0], LamportSignature.decatenate_key(sig_receiver[1]))
     print("One-time signature is: " + str(result))
-
     # If 'sig_prime' is a valid signature of 'M', the receiver computes the leaf corresponding to the Lamport key 'Yi'.
     if result:
         mk_receiver = MerkleTree(n_leaves=N)
